@@ -14,7 +14,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.os.patch.level" value=""/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="user.dir" value="D:\MyWorkspace\taskPro"/>
+    <property name="user.dir" value="D:\gitRepository\taskPro\taskPro"/>
     <property name="java.runtime.version" value="1.6.0_13-b03"/>
     <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
     <property name="java.endorsed.dirs" value="d:\MyEclipse\Common\binary\com.sun.java.jdk.win32.x86_64_1.6.0.013\jre\lib\endorsed"/>
@@ -25,7 +25,7 @@
     <property name="java.vm.specification.vendor" value="Sun Microsystems Inc."/>
     <property name="user.variant" value=""/>
     <property name="os.name" value="Windows Vista"/>
-    <property name="classworlds.conf" value="D:\MyWorkspace\.metadata\.plugins\org.eclipse.m2e.core\launches\m2conf7022277459520964722.tmp"/>
+    <property name="classworlds.conf" value="D:\MyWorkspace\.metadata\.plugins\org.eclipse.m2e.core\launches\m2conf7574468461120291006.tmp"/>
     <property name="sun.jnu.encoding" value="GBK"/>
     <property name="java.library.path" value="d:\MyEclipse\Common\binary\com.sun.java.jdk.win32.x86_64_1.6.0.013\bin;.;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\Lenovo\Bluetooth Software\;C:\Program Files\Lenovo\Bluetooth Software\syswow64;C:\Program Files\Java\jdk1.7.0_67\bin;C:\Program Files\Java\jdk1.7.0_67\jre\bin;D:\apache-maven-3.2.2-bin\apache-maven-3.2.2\bin;C:\Python27;C:\Python27\Scripts;D:\Program Files (x86)\UltraEdit\"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>

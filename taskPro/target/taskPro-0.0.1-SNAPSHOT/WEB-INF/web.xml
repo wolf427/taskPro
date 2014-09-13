@@ -35,7 +35,7 @@
 	<!-- 阻止地址栏输入 -->
 	<filter>
         <filter-name>access filter</filter-name>
-        <filter-class>com.taskPro.util.AccessFilter</filter-class>
+        <filter-class>com.taskSell.util.AccessFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>access filter</filter-name>
