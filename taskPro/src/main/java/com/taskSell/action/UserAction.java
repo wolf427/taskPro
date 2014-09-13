@@ -52,5 +52,9 @@ public class UserAction extends BaseAction implements ModelDriven<User> {
 		}
 		super.writeJson(j);
 	}
+	
+	public void logout(){
+		
+	}
 
 }
