@@ -12,16 +12,17 @@ import com.opensymphony.xwork2.ModelDriven;
 import com.taskSell.Service.UserServiceI;
 import com.taskSell.model.User;
 import com.taskSell.pageModel.Json;
+import com.taskSell.pageModel.UserPage;
 
 @ParentPackage("basePackage")
 @Namespace("/")
 @Action(value = "userAction", results = { @Result(name = "logout", location = "${pageContext.request.contextPath}", type = "redirect") })
-public class UserAction extends BaseAction implements ModelDriven<User> {
+public class UserAction extends BaseAction implements ModelDriven<UserPage> {
 	/**
 	 * Logger for this class
 	 */
 	private static final Logger logger = Logger.getLogger(UserAction.class);
-	private User user = new User();
+	private UserPage userPage = new UserPage();
 	private UserServiceI userService;
 
 	public UserServiceI getUserService() {
@@ -34,16 +35,16 @@ public class UserAction extends BaseAction implements ModelDriven<User> {
 	}
 
 	@Override
-	public User getModel() {
+	public UserPage getModel() {
 		// TODO Auto-generated method stub
-		return user;
+		return userPage;
 	}
 	
 	public void login(){
 		Json j = new Json();
-		User u = userService.login(user);
+		User u = userService.login(userPage);
 		if (u != null) {
-			ActionContext.getContext().getSession().put("user", user);
+			ActionContext.getContext().getSession().put("user", userPage);
 			j.setSuccess(true);
 			j.setMsg("登录成功");
 			j.setObj(u);

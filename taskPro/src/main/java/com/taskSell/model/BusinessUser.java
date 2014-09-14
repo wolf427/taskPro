@@ -6,15 +6,15 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
- * User entity. @author MyEclipse Persistence Tools
+ * BusinessUser entity. @author MyEclipse Persistence Tools
  */
 @Entity
-@Table(name = "user", catalog = "tasksell")
-public class User implements java.io.Serializable {
+@Table(name = "business_user", catalog = "tasksell")
+public class BusinessUser implements java.io.Serializable {
 
 	// Fields
 
-	private String userId;
+	private String businessUserId;
 	private String userName;
 	private String userPwd;
 	private String email;
@@ -24,20 +24,20 @@ public class User implements java.io.Serializable {
 	// Constructors
 
 	/** default constructor */
-	public User() {
+	public BusinessUser() {
 	}
 
 	/** minimal constructor */
-	public User(String userId, String userName, String userPwd) {
-		this.userId = userId;
+	public BusinessUser(String businessUserId, String userName, String userPwd) {
+		this.businessUserId = businessUserId;
 		this.userName = userName;
 		this.userPwd = userPwd;
 	}
 
 	/** full constructor */
-	public User(String userId, String userName, String userPwd, String email,
-			String phoneNumber, String qq) {
-		this.userId = userId;
+	public BusinessUser(String businessUserId, String userName, String userPwd,
+			String email, String phoneNumber, String qq) {
+		this.businessUserId = businessUserId;
 		this.userName = userName;
 		this.userPwd = userPwd;
 		this.email = email;
@@ -47,13 +47,13 @@ public class User implements java.io.Serializable {
 
 	// Property accessors
 	@Id
-	@Column(name = "user_id", unique = true, nullable = false, length = 36)
-	public String getUserId() {
-		return this.userId;
+	@Column(name = "business_user_id", unique = true, nullable = false, length = 36)
+	public String getBusinessUserId() {
+		return this.businessUserId;
 	}
 
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setBusinessUserId(String businessUserId) {
+		this.businessUserId = businessUserId;
 	}
 
 	@Column(name = "user_name", nullable = false, length = 45)
