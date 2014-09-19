@@ -7,39 +7,116 @@ public class UserPage {
 	private String email;
 	private String phoneNumber;
 	private String qq;
+
+	private String releaseId;
+	private String taskId;
+	private String taskInfo;
+
+	private Integer page;
+	private Integer rowNum;
+	private String sort;
+	private String order;
+
+	public String getSort() {
+		return sort;
+	}
+
+	public void setSort(String sort) {
+		this.sort = sort;
+	}
+
+	public String getOrder() {
+		return order;
+	}
+
+	public void setOrder(String order) {
+		this.order = order;
+	}
+
+	public Integer getPage() {
+		return page;
+	}
+
+	public void setPage(Integer page) {
+		this.page = page;
+	}
+
+	public Integer getRowNum() {
+		return rowNum;
+	}
+
+	public void setRowNum(Integer rowNum) {
+		this.rowNum = rowNum;
+	}
+
+	public String getReleaseId() {
+		return releaseId;
+	}
+
+	public void setReleaseId(String releaseId) {
+		this.releaseId = releaseId;
+	}
+
+	public String getTaskId() {
+		return taskId;
+	}
+
+	public void setTaskId(String taskId) {
+		this.taskId = taskId;
+	}
+
+	public String getTaskInfo() {
+		return taskInfo;
+	}
+
+	public void setTaskInfo(String taskInfo) {
+		this.taskInfo = taskInfo;
+	}
+
 	public String getUserId() {
 		return userId;
 	}
+
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
+
 	public String getUserName() {
 		return userName;
 	}
+
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
+
 	public String getUserPwd() {
 		return userPwd;
 	}
+
 	public void setUserPwd(String userPwd) {
 		this.userPwd = userPwd;
 	}
+
 	public String getEmail() {
 		return email;
 	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 	public String getPhoneNumber() {
 		return phoneNumber;
 	}
+
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
+
 	public String getQq() {
 		return qq;
 	}
+
 	public void setQq(String qq) {
 		this.qq = qq;
 	}

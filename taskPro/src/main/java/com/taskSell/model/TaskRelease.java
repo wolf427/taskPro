@@ -17,7 +17,8 @@ public class TaskRelease implements java.io.Serializable {
 	private String releaseId;
 	private String userId;
 	private String taskId;
-	private String taskInfo;
+	private String releaseInfo;
+	private String releaseState;
 
 	// Constructors
 
@@ -32,11 +33,12 @@ public class TaskRelease implements java.io.Serializable {
 
 	/** full constructor */
 	public TaskRelease(String releaseId, String userId, String taskId,
-			String taskInfo) {
+			String releaseInfo, String releaseState) {
 		this.releaseId = releaseId;
 		this.userId = userId;
 		this.taskId = taskId;
-		this.taskInfo = taskInfo;
+		this.releaseInfo = releaseInfo;
+		this.releaseState = releaseState;
 	}
 
 	// Property accessors
@@ -68,13 +70,22 @@ public class TaskRelease implements java.io.Serializable {
 		this.taskId = taskId;
 	}
 
-	@Column(name = "task_info", length = 10)
-	public String getTaskInfo() {
-		return this.taskInfo;
+	@Column(name = "release_info", length = 10)
+	public String getReleaseInfo() {
+		return this.releaseInfo;
 	}
 
-	public void setTaskInfo(String taskInfo) {
-		this.taskInfo = taskInfo;
+	public void setReleaseInfo(String releaseInfo) {
+		this.releaseInfo = releaseInfo;
+	}
+
+	@Column(name = "release_state", length = 10)
+	public String getReleaseState() {
+		return this.releaseState;
+	}
+
+	public void setReleaseState(String releaseState) {
+		this.releaseState = releaseState;
 	}
 
 }

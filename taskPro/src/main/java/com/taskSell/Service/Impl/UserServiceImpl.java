@@ -32,18 +32,14 @@ public class UserServiceImpl implements UserServiceI {
 
 	@Override
 	public User login(UserPage userPage) {
-		User user = new User();
-		BeanUtils.copyProperties(userPage, user);
 		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("userName", user.getUserName());
-		params.put("userPwd", user.getUserPwd());
+		params.put("userName", userPage.getUserName());
+		params.put("userPwd", userPage.getUserPwd());
 		User t = userDao
 				.get("from User t where t.userName = :userName and t.userPwd = :userPwd",
 						params);
 		if (t != null) {
-			ServletActionContext.getContext().getSession()
-					.put("userId", t.getUserId());
-			return user;
+			return t;
 		}
 		return null;
 	}

@@ -36,16 +36,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script src="jslib/assets/js/application.js"></script>
   <script type="text/javascript">
   	function login_commit(){
-  		$ajax({
+  		$.ajax({
   			url:'${pageContext.request.contextPath}/userAction!login.action',
   			data:{
   				userName:$("#userName").val(),
   				userPwd:$("#userPwd").val()
   			},
-  			dataType:json
+  			dataType:'json',
   			success:function(data){
-				var result = jQuery.parseJSON(data);
-				alert(result);
+				alert(data);
 			}
   		});
   	}
@@ -54,7 +53,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    <style>
       body {
           padding-bottom: 20px;
-          padding-top: 20px;
+          padding-top: 0px;
       }
       .navbar {
           margin-bottom: 20px;
@@ -62,7 +61,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </style>
     <div>
 	   		<nav class="navbar navbar-inverse navbar-lg navbar-embossed" role="navigation">
-	        <div class="container-fluid">
+	        <div class="container-fluid" >
 	          <div class="navbar-header">
 	            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-9">
 	              <span class="sr-only">Toggle navigation</span>
@@ -70,10 +69,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	              <span class="icon-bar"></span>
 	              <span class="icon-bar"></span>
 	            </button>
-	            <a class="navbar-brand" href="#">Flat UI</a>
+	            <a class="navbar-brand" href="#">WOLF</a>
 	          </div>
 	          <div class="navbar-collapse collapse" id="navbar-collapse-9">
-	            <form id="login_loginForm" class="navbar-form navbar-right" role="form">
+	            <div id="login_loginForm" class="navbar-form navbar-right">
 	              <div class="form-group">
 	                <input type="text" placeholder="Email" id="userName" class="form-control">
 	              </div>
@@ -82,7 +81,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	              </div>
 	              <button class="btn btn-success" onclick="login_commit()">Sign in</button>
 	              <button type="submit" class="btn btn-danger">Register</button>
-	            </form>
+	            </div>
 	
 	          </div><!--/.navbar-collapse -->
 	        </div>

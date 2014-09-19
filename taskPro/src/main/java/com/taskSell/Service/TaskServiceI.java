@@ -1,9 +1,14 @@
 package com.taskSell.Service;
 
-import com.taskSell.pageModel.TaskPage;
+import com.taskSell.model.Task;
+import com.taskSell.pageModel.BusinessUserPage;
+import com.taskSell.pageModel.DataGrid;
+import com.taskSell.pageModel.UserPage;
 
 public interface TaskServiceI {
 
-	TaskPage save(TaskPage taskPage);
+	Task save(Task task);
+
+	DataGrid getTasks(BusinessUserPage businessUserPage);
 
 }
