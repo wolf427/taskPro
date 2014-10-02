@@ -25,9 +25,9 @@
     <property name="java.vm.specification.vendor" value="Sun Microsystems Inc."/>
     <property name="user.variant" value=""/>
     <property name="os.name" value="Windows Vista"/>
-    <property name="classworlds.conf" value="D:\MyWorkspace\.metadata\.plugins\org.eclipse.m2e.core\launches\m2conf1038014105119913611.tmp"/>
+    <property name="classworlds.conf" value="D:\MyWorkspace\.metadata\.plugins\org.eclipse.m2e.core\launches\m2conf347771938302172801.tmp"/>
     <property name="sun.jnu.encoding" value="GBK"/>
-    <property name="java.library.path" value="d:\MyEclipse\Common\binary\com.sun.java.jdk.win32.x86_64_1.6.0.013\bin;.;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\Lenovo\Bluetooth Software\;C:\Program Files\Lenovo\Bluetooth Software\syswow64;C:\Program Files\Java\jdk1.7.0_67\bin;C:\Program Files\Java\jdk1.7.0_67\jre\bin;D:\apache-maven-3.2.2-bin\apache-maven-3.2.2\bin;C:\Python27;C:\Python27\Scripts;D:\Program Files (x86)\UltraEdit\"/>
+    <property name="java.library.path" value="d:\MyEclipse\Common\binary\com.sun.java.jdk.win32.x86_64_1.6.0.013\bin;.;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Java\jdk1.8.0_20\bin;C:\Program Files\Java\jdk1.8.0_20\jre\bin;D:\Program Files\MySQL\MySQL Utilities 1.4.3\;D:\Program Files\MySQL\MySQL Utilities 1.4.3\Doctrine extensions for PHP\;C:\Program Files (x86)\Lenovo\Lenovo Home\;C:\Program Files (x86)\Lenovo\Lenovo Home\DCMainWin.exe"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.class.version" value="50.0"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Server Compiler"/>

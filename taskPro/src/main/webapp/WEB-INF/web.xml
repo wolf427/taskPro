@@ -32,7 +32,7 @@
 		<filter-name>struts2</filter-name>
 		<url-pattern>*.action</url-pattern>
 	</filter-mapping> 
-	<!-- 阻止地址栏输入 -->
+	<!-- 阻止地址栏输入 
 	<filter>
         <filter-name>access filter</filter-name>
         <filter-class>com.taskSell.util.AccessFilter</filter-class>
@@ -40,7 +40,7 @@
     <filter-mapping>
         <filter-name>access filter</filter-name>
         <url-pattern>/jsp/*</url-pattern>
-    </filter-mapping>
+    </filter-mapping>	-->
 	<!-- spring监听器 -->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>

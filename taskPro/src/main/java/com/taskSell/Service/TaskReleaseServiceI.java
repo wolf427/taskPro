@@ -1,6 +1,7 @@
 package com.taskSell.Service;
 
 import com.taskSell.model.TaskRelease;
+import com.taskSell.pageModel.BusinessUserPage;
 import com.taskSell.pageModel.DataGrid;
 import com.taskSell.pageModel.UserPage;
 
@@ -17,6 +18,8 @@ public interface TaskReleaseServiceI {
 	boolean paidState(String releaseId);
 
 	DataGrid getReleases(UserPage userPage);
+
+	DataGrid bsGetReleases(BusinessUserPage businessUserPage);
 
 
 }

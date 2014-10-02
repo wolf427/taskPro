@@ -11,4 +11,6 @@ public interface TaskServiceI {
 
 	DataGrid getTasks(BusinessUserPage businessUserPage);
 
+	Task getTaskById(String taskId);
+
 }

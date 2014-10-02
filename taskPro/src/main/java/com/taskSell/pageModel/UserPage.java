@@ -1,5 +1,9 @@
 package com.taskSell.pageModel;
 
+import java.util.List;
+
+import com.taskSell.model.Task;
+
 public class UserPage {
 	private String userId;
 	private String userName;
@@ -12,10 +16,46 @@ public class UserPage {
 	private String taskId;
 	private String taskInfo;
 
-	private Integer page;
-	private Integer rowNum;
+	private int current;
+	private int rowCount;
+	private Long total;
 	private String sort;
-	private String order;
+	private String searchPhrase;
+	
+	private List<Task> tasks;
+
+	
+	public List<Task> getTasks() {
+		return tasks;
+	}
+
+	public void setTasks(List<Task> tasks) {
+		this.tasks = tasks;
+	}
+
+	public int getCurrent() {
+		return current;
+	}
+
+	public void setCurrent(int current) {
+		this.current = current;
+	}
+
+	public int getRowCount() {
+		return rowCount;
+	}
+
+	public void setRowCount(int rowCount) {
+		this.rowCount = rowCount;
+	}
+
+	public Long getTotal() {
+		return total;
+	}
+
+	public void setTotal(Long total) {
+		this.total = total;
+	}
 
 	public String getSort() {
 		return sort;
@@ -25,28 +65,12 @@ public class UserPage {
 		this.sort = sort;
 	}
 
-	public String getOrder() {
-		return order;
+	public String getSearchPhrase() {
+		return searchPhrase;
 	}
 
-	public void setOrder(String order) {
-		this.order = order;
-	}
-
-	public Integer getPage() {
-		return page;
-	}
-
-	public void setPage(Integer page) {
-		this.page = page;
-	}
-
-	public Integer getRowNum() {
-		return rowNum;
-	}
-
-	public void setRowNum(Integer rowNum) {
-		this.rowNum = rowNum;
+	public void setSearchPhrase(String searchPhrase) {
+		this.searchPhrase = searchPhrase;
 	}
 
 	public String getReleaseId() {

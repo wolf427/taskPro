@@ -6,11 +6,11 @@ import java.util.Map;
 import java.util.UUID;
 
 import org.apache.log4j.Logger;
-
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.taskSell.Dao.TaskDaoI;
 import com.taskSell.Dao.TaskReleaseDaoI;
 import com.taskSell.Service.TaskReleaseServiceI;
 import com.taskSell.model.Task;
@@ -36,6 +36,16 @@ public class TaskReleaseServiceImpl implements TaskReleaseServiceI {
 			.getLogger(TaskReleaseServiceImpl.class);
 
 	private TaskReleaseDaoI taskReleaseDao;
+	private TaskDaoI taskDao;
+
+	public TaskDaoI getTaskDao() {
+		return taskDao;
+	}
+
+	@Autowired
+	public void setTaskDao(TaskDaoI taskDao) {
+		this.taskDao = taskDao;
+	}
 
 	public TaskReleaseDaoI getTaskReleaseDao() {
 		return taskReleaseDao;
@@ -133,7 +143,7 @@ public class TaskReleaseServiceImpl implements TaskReleaseServiceI {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("releaseId", releaseId);
 		TaskRelease t = taskReleaseDao.get(
-				"from TaskRelease tr where tr.releaseId = :releaserId", params);
+				"from TaskRelease tr where tr.releaseId = :releaseId", params);
 		if (t.getReleaseState().equals("complete")) {
 			t.setReleaseState("paid");
 			return true;
@@ -147,8 +157,7 @@ public class TaskReleaseServiceImpl implements TaskReleaseServiceI {
 	 * Title: getReleases
 	 * </p>
 	 * <p>
-	 * Description: get a datagrid of taskRelease ,the parameters are taskId or
-	 * userId
+	 * Description: 用户获取自己所提交的申请的方法 userId
 	 * </p>
 	 * 
 	 * @param userPage
@@ -162,7 +171,8 @@ public class TaskReleaseServiceImpl implements TaskReleaseServiceI {
 		addWhere(userPage, hqlTemp, params);// 加where语句，筛选
 		String totalHql = "select count(*)" + hqlTemp;
 		List<TaskRelease> dgTaskRelease = taskReleaseDao.find(
-				hqlTemp.toString(), params, userPage.getPage(), userPage.getRowNum());
+				hqlTemp.toString(), params, userPage.getCurrent(),
+				userPage.getRowCount());
 		datagrid.setTotal(taskReleaseDao.count(totalHql, params));
 		datagrid.setRows(dgTaskRelease);
 		return datagrid;
@@ -174,7 +184,8 @@ public class TaskReleaseServiceImpl implements TaskReleaseServiceI {
 
 	public void addWhere(UserPage userPage, StringBuffer hqlTemp,
 			Map<String, Object> params) {
-		if (isNull(userPage.getUserId()) && isNull(userPage.getTaskId())) {
+		if (isNull(userPage.getUserId()) && isNull(userPage.getTaskId())
+				&&  (userPage.getTasks()==null||userPage.getTasks().size() == 0)) {
 			return;
 		}
 		hqlTemp.append(" where");
@@ -186,7 +197,41 @@ public class TaskReleaseServiceImpl implements TaskReleaseServiceI {
 			hqlTemp.append(" taskId=:taskId and");
 			params.put("taskId", userPage.getTaskId());
 		}
+		if (userPage.getTasks()!=null&&userPage.getTasks().size() != 0) {
+			StringBuffer taskIds = new StringBuffer();
+			for (Task ta : userPage.getTasks()) {
+				taskIds.append("'");
+				taskIds.append(ta.getTaskId());
+				taskIds.append("',");
+			}
+			taskIds.delete(taskIds.length() - 1, taskIds.length());
+//			params.put("taskIds", taskIds.toString());
+//			logger.info(taskIds.toString());
+			hqlTemp.append(" taskId in ("+taskIds.toString()+") and");
+		}
+
 		hqlTemp.delete(hqlTemp.length() - 4, hqlTemp.length());
 	}
 
+	/**
+	 * <p>
+	 * Title: bsGetReleases
+	 * </p>
+	 * <p>
+	 * Description:商家获取自己提交的申请的方法
+	 * </p>
+	 * 
+	 * @return
+	 */
+	@Override
+	public DataGrid bsGetReleases(BusinessUserPage businessUserPage) {
+		String hql = "from Task t where t.businessUserId=:businessUserId";
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("businessUserId", businessUserPage.getBusinessUserId());
+		List<Task> tasks = taskDao.find(hql, params);
+		UserPage userPage = new UserPage();
+		BeanUtils.copyProperties(businessUserPage, userPage);
+		userPage.setTasks(tasks);
+		return getReleases(userPage);
+	}
 }

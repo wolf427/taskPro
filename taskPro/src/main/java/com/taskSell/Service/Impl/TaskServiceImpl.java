@@ -53,8 +53,10 @@ public class TaskServiceImpl implements TaskServiceI {
 		String totalHql = "select count(*)" + hqlTemp;
 		addOrderBy(businessUserPage, hqlTemp);
 		List<Task> dgTasks = taskDao.find(hqlTemp.toString(), params,
-				businessUserPage.getPage(), businessUserPage.getRowNum());
+				businessUserPage.getCurrent(), businessUserPage.getRowCount());
 		datagrid.setTotal(taskDao.count(totalHql, params));
+		datagrid.setCurrent(businessUserPage.getCurrent());
+		datagrid.setRowCount(businessUserPage.getRowCount());
 		datagrid.setRows(dgTasks);
 		return datagrid;
 	}
@@ -63,7 +65,7 @@ public class TaskServiceImpl implements TaskServiceI {
 			StringBuffer hqlTemp) {
 		if (businessUserPage.getSort() != null) {
 			hqlTemp.append(" order by " + businessUserPage.getSort() + " "
-					+ businessUserPage.getOrder());
+					+ businessUserPage.getSearchPhrase());
 		}
 	}
 
@@ -71,7 +73,7 @@ public class TaskServiceImpl implements TaskServiceI {
 		return (str == null || str.equals(""));
 	}
 
-	public void addWhere(BusinessUserPage businessUserPage,
+	private void addWhere(BusinessUserPage businessUserPage,
 			StringBuffer hqlTemp, Map<String, Object> params) {
 		if (isNull(businessUserPage.getBusinessUserId())
 				&& isNull(businessUserPage.getContact())
@@ -91,4 +93,18 @@ public class TaskServiceImpl implements TaskServiceI {
 		}
 		hqlTemp.delete(hqlTemp.length() - 4, hqlTemp.length());
 	}
+	
+	/**
+	* <p>Title: getTaskById</p>
+	* <p>Description: 通过taskId查找task</p>
+	* @param taskId
+	* @return
+	*/
+	@Override
+	public Task getTaskById(String taskId){
+		Map<String, Object> params =new HashMap<String, Object>();
+		params.put("taskId", taskId);
+		return taskDao.get("from Task t where t.taskId=:taskId", params);
+	}
+	
 }

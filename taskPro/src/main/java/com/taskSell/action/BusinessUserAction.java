@@ -109,6 +109,7 @@ public class BusinessUserAction extends BaseAction implements
 				j.setSuccess(true);
 				j.setMsg("保存成功");
 				j.setObj(task);
+				logger.info(task.getTaskNeed());
 			} else {
 				j.setSuccess(false);
 				j.setMsg("保存失败，请登录");
@@ -116,6 +117,7 @@ public class BusinessUserAction extends BaseAction implements
 			}
 		} catch (Exception e) {
 			j.setMsg("保存失败 ");
+			j.setObj(e.getMessage());
 		}
 		super.writeJson(j);
 	}
@@ -148,6 +150,21 @@ public class BusinessUserAction extends BaseAction implements
 	 */
 	public void paidState() {
 		taskReleaseService.paidState(businessUserPage.getReleaseId());
+	}
+
+	/**
+	 * <p>
+	 * Title: showRelease
+	 * </p>
+	 * <p>
+	 * Description: 展示该商家任务的申请情况
+	 * </p>
+	 */
+	public void showRelease() {
+		String businessUserId = (String) ActionContext.getContext()
+				.getSession().get("businessUserId");
+		businessUserPage.setBusinessUserId(businessUserId);
+		super.writeJson(taskReleaseService.bsGetReleases(businessUserPage));
 	}
 
 }

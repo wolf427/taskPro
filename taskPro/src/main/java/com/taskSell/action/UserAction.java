@@ -14,9 +14,11 @@ import com.opensymphony.xwork2.ModelDriven;
 import com.taskSell.Service.TaskReleaseServiceI;
 import com.taskSell.Service.TaskServiceI;
 import com.taskSell.Service.UserServiceI;
+import com.taskSell.model.Task;
 import com.taskSell.model.TaskRelease;
 import com.taskSell.model.User;
 import com.taskSell.pageModel.BusinessUserPage;
+import com.taskSell.pageModel.DataGrid;
 import com.taskSell.pageModel.Json;
 import com.taskSell.pageModel.UserPage;
 
@@ -136,13 +138,53 @@ public class UserAction extends BaseAction implements ModelDriven<UserPage> {
 		BeanUtils.copyProperties(userPage, businessUserPage);
 		super.writeJson(taskService.getTasks(businessUserPage));
 	}
+
+	/**
+	 * <p>
+	 * Title: completeTask
+	 * </p>
+	 * <p>
+	 * Description: after users accomplish a task
+	 * </p>
+	 */
+	public void completeTask() {
+		taskReleaseService.consummationState(userPage.getReleaseId());
+	}
+
+	/**
+	* <p>Title: getTaskDetial</p>
+	* <p>Description:查询某一具体任务的详细内容</p>
+	*/
+	public void getTaskDetial() {
+		Json j = new Json();
+		try {
+			Task task = taskService.getTaskById(userPage.getTaskId());
+			if (task!=null) {
+				j.setObj(task);
+				j.setMsg("查询成功");
+				j.setSuccess(true);
+			} else {
+				j.setSuccess(false);
+				j.setMsg("该任务不存在或已下架");
+			}
+			super.writeJson(j);
+
+		} catch (Exception e) {
+			j.setMsg("查找失败");
+			j.setSuccess(false);
+			j.setObj(e.getMessage());
+		}
+	}
 	
 	/**
-	* <p>Title: completeTask</p>
-	* <p>Description: after users accomplish a task</p>
+	* <p>Title: getMyReleases</p>
+	* <p>Description: 列出用户领取的任务</p>
 	*/
-	public void completeTask(){
-		taskReleaseService.consummationState(userPage.getReleaseId());
+	public void getMyReleases(){
+		String userId = (String) ActionContext.getContext().getSession()
+				.get("userId");
+		userPage.setUserId(userId);
+		super.writeJson(taskReleaseService.getReleases(userPage));
 	}
 
 }
