@@ -42,6 +42,7 @@ public class BusinessUserServiceImpl implements BusinessUserServiceI {
 		BeanUtils.copyProperties(businessUserPage, businessUser);
 		businessUser.setBusinessUserId(UUID.randomUUID().toString());
 		businessUerDao.save(businessUser);
+		BeanUtils.copyProperties(businessUser,businessUserPage);
 		return businessUserPage;
 	}
 	

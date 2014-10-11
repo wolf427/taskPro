@@ -186,5 +186,19 @@ public class UserAction extends BaseAction implements ModelDriven<UserPage> {
 		userPage.setUserId(userId);
 		super.writeJson(taskReleaseService.getReleases(userPage));
 	}
+	
+	public void register(){
+		Json json = new Json();
+		try {
+			userPage=userService.save(userPage);
+			json.setMsg("注册成功");
+			json.setObj(userPage);
+			json.setSuccess(true);
+		} catch (Exception e) {
+			json.setSuccess(false);
+			json.setMsg(e.getMessage());
+		}
+		super.writeJson(json);
+	}
 
 }

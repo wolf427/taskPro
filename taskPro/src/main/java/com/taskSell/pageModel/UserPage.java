@@ -15,6 +15,7 @@ public class UserPage {
 	private String releaseId;
 	private String taskId;
 	private String taskInfo;
+	private String releaseInfo;
 
 	private int current;
 	private int rowCount;
@@ -35,6 +36,14 @@ public class UserPage {
 
 	public int getCurrent() {
 		return current;
+	}
+
+	public String getReleaseInfo() {
+		return releaseInfo;
+	}
+
+	public void setReleaseInfo(String releaseInfo) {
+		this.releaseInfo = releaseInfo;
 	}
 
 	public void setCurrent(int current) {

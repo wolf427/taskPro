@@ -7,4 +7,6 @@ public interface UserServiceI {
 
 	User login(UserPage userPage);
 
+	UserPage save(UserPage userPage);
+
 }

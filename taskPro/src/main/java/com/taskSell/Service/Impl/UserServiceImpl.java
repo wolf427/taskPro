@@ -2,6 +2,7 @@ package com.taskSell.Service.Impl;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import org.apache.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.taskSell.Dao.UserDaoI;
 import com.taskSell.Service.UserServiceI;
+import com.taskSell.model.BusinessUser;
 import com.taskSell.model.User;
 import com.taskSell.pageModel.UserPage;
 
@@ -42,6 +44,15 @@ public class UserServiceImpl implements UserServiceI {
 			return t;
 		}
 		return null;
+	}
+	@Override
+	public UserPage save(UserPage userPage){
+		User user = new User();
+		BeanUtils.copyProperties(userPage, user);
+		user.setUserId(UUID.randomUUID().toString());
+		userDao.save(user);
+		BeanUtils.copyProperties( user,userPage);
+		return userPage;
 	}
 
 }

@@ -166,5 +166,23 @@ public class BusinessUserAction extends BaseAction implements
 		businessUserPage.setBusinessUserId(businessUserId);
 		super.writeJson(taskReleaseService.bsGetReleases(businessUserPage));
 	}
+	
+	/**
+	* <p>Title: register</p>
+	* <p>Description:商家注册 </p>
+	*/
+	public void register(){
+		Json json = new Json();
+		try {
+			businessUserPage=businessUserService.save(businessUserPage);
+			json.setMsg("注册成功");
+			json.setObj(businessUserPage);
+			json.setSuccess(true);
+		} catch (Exception e) {
+			json.setSuccess(false);
+			json.setMsg(e.getMessage());
+		}
+		super.writeJson(json);
+	}
 
 }
