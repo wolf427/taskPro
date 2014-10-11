@@ -173,7 +173,34 @@ public class TaskReleaseServiceImpl implements TaskReleaseServiceI {
 		List<TaskRelease> dgTaskRelease = taskReleaseDao.find(
 				hqlTemp.toString(), params, userPage.getCurrent(),
 				userPage.getRowCount());
+		datagrid.setCurrent(userPage.getCurrent());
 		datagrid.setTotal(taskReleaseDao.count(totalHql, params));
+		datagrid.setRows(dgTaskRelease);
+		return datagrid;
+	}
+	public DataGrid getReleases(BusinessUserPage businessUserPage) {
+		String hql = "from Task t where t.businessUserId=:businessUserId";
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("businessUserId", businessUserPage.getBusinessUserId());
+		List<Task> tasks = taskDao.find(hql, params);
+		DataGrid datagrid = new DataGrid();
+		if(tasks==null||tasks.size()==0){
+			datagrid.setRowCount(10);
+			datagrid.setRows(tasks);
+			datagrid.setTotal(0L);
+			datagrid.setCurrent(1);
+			return datagrid;
+		}
+		
+		StringBuffer hqlTemp = new StringBuffer("from TaskRelease t");
+		Map<String, Object> params1 = new HashMap<String, Object>();
+		addWhere(businessUserPage, hqlTemp, params1,tasks);// 加where语句，筛选
+		String totalHql = "select count(*)" + hqlTemp;
+		List<TaskRelease> dgTaskRelease = taskReleaseDao.find(
+				hqlTemp.toString(), params1, businessUserPage.getCurrent(),
+				businessUserPage.getRowCount());
+		datagrid.setCurrent(businessUserPage.getCurrent());
+		datagrid.setTotal(taskReleaseDao.count(totalHql, params1));
 		datagrid.setRows(dgTaskRelease);
 		return datagrid;
 	}
@@ -181,11 +208,26 @@ public class TaskReleaseServiceImpl implements TaskReleaseServiceI {
 	private boolean isNull(String str) {
 		return (str == null || str.equals(""));
 	}
+	public void addWhere(BusinessUserPage businessUserPage, StringBuffer hqlTemp,
+			Map<String, Object> params,List<Task> tasks) {
+		hqlTemp.append(" where");
+		if (tasks!=null&&tasks.size() != 0) {
+			StringBuffer taskIds = new StringBuffer();
+			for (Task ta : tasks) {
+				taskIds.append("'");
+				taskIds.append(ta.getTaskId());
+				taskIds.append("',");
+			}
+			taskIds.delete(taskIds.length() - 1, taskIds.length());
+			hqlTemp.append(" taskId in ("+taskIds.toString()+") and");
+		}
+		hqlTemp.delete(hqlTemp.length() - 4, hqlTemp.length());
+	}
 
 	public void addWhere(UserPage userPage, StringBuffer hqlTemp,
 			Map<String, Object> params) {
 		if (isNull(userPage.getUserId()) && isNull(userPage.getTaskId())
-				&&  (userPage.getTasks()==null||userPage.getTasks().size() == 0)) {
+				) {
 			return;
 		}
 		hqlTemp.append(" where");
@@ -196,18 +238,6 @@ public class TaskReleaseServiceImpl implements TaskReleaseServiceI {
 		if (!isNull(userPage.getTaskId())) {
 			hqlTemp.append(" taskId=:taskId and");
 			params.put("taskId", userPage.getTaskId());
-		}
-		if (userPage.getTasks()!=null&&userPage.getTasks().size() != 0) {
-			StringBuffer taskIds = new StringBuffer();
-			for (Task ta : userPage.getTasks()) {
-				taskIds.append("'");
-				taskIds.append(ta.getTaskId());
-				taskIds.append("',");
-			}
-			taskIds.delete(taskIds.length() - 1, taskIds.length());
-//			params.put("taskIds", taskIds.toString());
-//			logger.info(taskIds.toString());
-			hqlTemp.append(" taskId in ("+taskIds.toString()+") and");
 		}
 
 		hqlTemp.delete(hqlTemp.length() - 4, hqlTemp.length());
@@ -225,13 +255,6 @@ public class TaskReleaseServiceImpl implements TaskReleaseServiceI {
 	 */
 	@Override
 	public DataGrid bsGetReleases(BusinessUserPage businessUserPage) {
-		String hql = "from Task t where t.businessUserId=:businessUserId";
-		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("businessUserId", businessUserPage.getBusinessUserId());
-		List<Task> tasks = taskDao.find(hql, params);
-		UserPage userPage = new UserPage();
-		BeanUtils.copyProperties(businessUserPage, userPage);
-		userPage.setTasks(tasks);
-		return getReleases(userPage);
+		return getReleases(businessUserPage);
 	}
 }

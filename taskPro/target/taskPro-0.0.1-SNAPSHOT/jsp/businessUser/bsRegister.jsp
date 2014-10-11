@@ -23,8 +23,8 @@
 					data : {
 						userName : $("#userName").val(),
 						userPwd : $("#userPwd").val(),
-						userName : $("#email").val(),
-						userPwd : $("#phoneNumber").val(),
+						email : $("#email").val(),
+						phoneNumber : $("#phoneNumber").val(),
 					},
 					dataType : 'json',
 					success : function(data) {
@@ -32,8 +32,6 @@
 						window.location.href = "${pageContext.request.contextPath}/jsp/static/login.jsp";
 					}
 				});
-	}
-	function fu(){
 	}
 </script>
 <form class="form-horizontal">
@@ -84,5 +82,5 @@
 				data-validation-regex-message="请填写合法手机号" />
 		</div>
 	</div>
-	<button class="btn btn-info" type="submit">注册</button>
+	<button class="btn btn-info" type="button" onclick="register_commit()">注册</button>
 </form>

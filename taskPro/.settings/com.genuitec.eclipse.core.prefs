@@ -1,7 +1,10 @@
-#Fri Oct 03 11:22:29 CST 2014
+#Sat Oct 11 16:12:49 CST 2014
 clsCnt=30
 eclipse.preferences.version=1
 locCnt=2083
 pkgCnt=10
 sTime=2014\u5E7410\u67083\u65E5 \u661F\u671F\u4E94 \u4E0A\u534811\u65F622\u520629\u79D2 CST
 srcCnt=2
+validator.Checked=target
+validator.Revalidate=true
+validator.Unchecked=
