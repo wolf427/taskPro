@@ -2,11 +2,6 @@
 <%
 	pageContext.setAttribute("side", request.getParameter("side"));
 %>
-<link rel="stylesheet"
-	href="jslib/bootstrap-3.2.0-dist/css/bootstrap.css">
-<script src="jslib/jqBootgrid/lib/jquery-1.11.1.min.js"></script>
-<script src="jslib/bootstrap-3.2.0-dist/js/bootstrap.min.js"></script>
-
 <script type="text/javascript">
 $(function(){
 if("${side}"=="tasks"){

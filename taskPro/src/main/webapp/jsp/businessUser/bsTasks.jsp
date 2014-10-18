@@ -1,18 +1,6 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%
-	String path = request.getContextPath();
-	String basePath = request.getScheme() + "://"
-			+ request.getServerName() + ":" + request.getServerPort()
-			+ path + "/";
-%>
-<base href="<%=basePath%>">
+<%@ page language="java"  pageEncoding="UTF-8"%>
 
-<link rel="stylesheet" href="jslib/jqBootgrid/css/bootstrap.css">
-<link rel="stylesheet" href="jslib/jqBootgrid/build/jquery.bootgrid.css">
-<script src="jslib/jqBootgrid/js/moderniz.2.8.1.js"></script>
-<script src="jslib/jqBootgrid/lib/jquery-1.11.1.min.js"></script>
-<script src="jslib/jqBootgrid/js/bootstrap.js"></script>
-<script src="jslib/jqBootgrid/build/jquery.bootgrid.js"></script>
+
 
 <script type="text/javascript">
 	$(function() {
@@ -29,8 +17,23 @@
 							url : "${pageContext.request.contextPath}/businessUserAction!showUsersTask.action",
 							formatters : {
 								"commands" : function(column, row) {
-									return "<button type=\"button\" class=\"btn btn-xs btn-default command-edit\" data-row-id=\"" + row.id + "\"><span class=\"fa fa-pencil\"></span></button> "
-											+ "<button type=\"button\" class=\"btn btn-xs btn-default command-delete\" data-row-id=\"" + row.id + "\"><span class=\"fa fa-trash-o\"></span></button>";
+									return "<button type=\"button\" class=\"btn btn-xs btn-default command-edit\" data-row-id=\"" + row.id + "\"><span class=\"glyphicon glyphicon-pencil\"></span></button> "
+											+ "<button type=\"button\" class=\"btn btn-xs btn-default command-delete\" data-row-id=\"" + row.id + "\"><span class=\"glyphicon glyphicon-remove\"></span></button>";
+								},
+								"zhuangtai":function(column, row) {
+									if (row.taskState == "init"||row.taskState == "approved_on") {
+										return "<button class='btn btn-danger' type='button' onclick='task_off(\""
+												+ row.taskId
+												+ "\")'>下线该任务</button>";
+									}
+									if (row.taskState == "init_off"||row.taskState == "approved_off") {
+										return "<button class='btn btn-info' type='button' onclick='task_on(\""
+												+ row.taskId
+												+ "\")'>上线该任务</button>";
+									}
+									if (row.taskState == "refused") {
+										return "<a>未通过审核</a>";
+									}
 								}
 							}
 						}).on(
@@ -50,6 +53,34 @@
 									});
 						});
 	});
+	function task_off(taskId){
+	$
+				.ajax({
+					url : '${pageContext.request.contextPath}/taskOff.action',
+					contentType : "application/x-www-form-urlencoded; charset=utf-8",
+					data : {
+						taskId:taskId
+					},
+					dataType : 'json',
+					success : function(data) {
+						alert(data.msg);
+					}
+				});
+	};
+	function task_on(taskId){
+	$
+				.ajax({
+					url : '${pageContext.request.contextPath}/taskOn.action',
+					contentType : "application/x-www-form-urlencoded; charset=utf-8",
+					data : {
+						taskId:taskId
+					},
+					dataType : 'json',
+					success : function(data) {
+						alert(data.msg);
+					}
+				});
+	};
 </script>
 <div>
 	<table id="grid-data"
@@ -62,6 +93,8 @@
 				<th data-column-id="taskNeed">任务要求</th>
 				<th data-column-id="commands" data-formatter="commands"
 					data-sortable="false">Commands</th>
+				<th data-column-id="zhuangtai" data-formatter="zhuangtai"
+					data-sortable="false">任务状态</th>
 			</tr>
 		</thead>
 	</table>

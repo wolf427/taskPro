@@ -17,6 +17,8 @@ public class BusinessUserPage {
 	private Integer confirmTime;
 	private Integer deadline;
 	private String taskNeed;
+	private String taskState;
+	private Integer taskRemain;
 
 	private String releaseId;
 
@@ -42,7 +44,21 @@ public class BusinessUserPage {
 		this.sort = sort;
 	}
 
-	
+	public String getTaskState() {
+		return taskState;
+	}
+
+	public void setTaskState(String taskState) {
+		this.taskState = taskState;
+	}
+
+	public Integer getTaskRemain() {
+		return taskRemain;
+	}
+
+	public void setTaskRemain(Integer taskRemain) {
+		this.taskRemain = taskRemain;
+	}
 
 	public String getSearchPhrase() {
 		return searchPhrase;

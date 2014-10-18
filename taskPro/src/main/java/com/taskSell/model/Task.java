@@ -16,13 +16,15 @@ public class Task implements java.io.Serializable {
 
 	private String taskId;
 	private String businessUserId;
-	private String contact;
-	private Double taskReward;
-	private Double taskCost;
-	private String taskType;
 	private Integer confirmTime;
+	private String contact;
 	private Integer deadline;
+	private Double taskCost;
 	private String taskNeed;
+	private Double taskReward;
+	private String taskType;
+	private String taskState;
+	private Integer taskRemain;
 
 	// Constructors
 
@@ -38,18 +40,21 @@ public class Task implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Task(String taskId, String businessUserId, String contact,
-			Double taskReward, Double taskCost, String taskType,
-			Integer confirmTime, Integer deadline, String taskNeed) {
+	public Task(String taskId, String businessUserId, Integer confirmTime,
+			String contact, Integer deadline, Double taskCost, String taskNeed,
+			Double taskReward, String taskType, String taskState,
+			Integer taskRemain) {
 		this.taskId = taskId;
 		this.businessUserId = businessUserId;
-		this.contact = contact;
-		this.taskReward = taskReward;
-		this.taskCost = taskCost;
-		this.taskType = taskType;
 		this.confirmTime = confirmTime;
+		this.contact = contact;
 		this.deadline = deadline;
+		this.taskCost = taskCost;
 		this.taskNeed = taskNeed;
+		this.taskReward = taskReward;
+		this.taskType = taskType;
+		this.taskState = taskState;
+		this.taskRemain = taskRemain;
 	}
 
 	// Property accessors
@@ -72,42 +77,6 @@ public class Task implements java.io.Serializable {
 		this.businessUserId = businessUserId;
 	}
 
-	@Column(name = "contact", length = 45)
-	public String getContact() {
-		return this.contact;
-	}
-
-	public void setContact(String contact) {
-		this.contact = contact;
-	}
-
-	@Column(name = "task_reward", nullable = false, precision = 22, scale = 0)
-	public Double getTaskReward() {
-		return this.taskReward;
-	}
-
-	public void setTaskReward(Double taskReward) {
-		this.taskReward = taskReward;
-	}
-
-	@Column(name = "task_cost", precision = 22, scale = 0)
-	public Double getTaskCost() {
-		return this.taskCost;
-	}
-
-	public void setTaskCost(Double taskCost) {
-		this.taskCost = taskCost;
-	}
-
-	@Column(name = "task_type", length = 45)
-	public String getTaskType() {
-		return this.taskType;
-	}
-
-	public void setTaskType(String taskType) {
-		this.taskType = taskType;
-	}
-
 	@Column(name = "confirm_time")
 	public Integer getConfirmTime() {
 		return this.confirmTime;
@@ -115,6 +84,15 @@ public class Task implements java.io.Serializable {
 
 	public void setConfirmTime(Integer confirmTime) {
 		this.confirmTime = confirmTime;
+	}
+
+	@Column(name = "contact", length = 45)
+	public String getContact() {
+		return this.contact;
+	}
+
+	public void setContact(String contact) {
+		this.contact = contact;
 	}
 
 	@Column(name = "deadline")
@@ -126,13 +104,58 @@ public class Task implements java.io.Serializable {
 		this.deadline = deadline;
 	}
 
-	@Column(name = "task_need", length = 500)
+	@Column(name = "task_cost", precision = 22, scale = 0)
+	public Double getTaskCost() {
+		return this.taskCost;
+	}
+
+	public void setTaskCost(Double taskCost) {
+		this.taskCost = taskCost;
+	}
+
+	@Column(name = "task_need")
 	public String getTaskNeed() {
 		return this.taskNeed;
 	}
 
 	public void setTaskNeed(String taskNeed) {
 		this.taskNeed = taskNeed;
+	}
+
+	@Column(name = "task_reward", nullable = false, precision = 22, scale = 0)
+	public Double getTaskReward() {
+		return this.taskReward;
+	}
+
+	public void setTaskReward(Double taskReward) {
+		this.taskReward = taskReward;
+	}
+
+	@Column(name = "task_type", length = 45)
+	public String getTaskType() {
+		return this.taskType;
+	}
+
+	public void setTaskType(String taskType) {
+		this.taskType = taskType;
+	}
+
+	@Column(name = "task_state", length = 10)
+	public String getTaskState() {
+		return this.taskState;
+	}
+
+	public void setTaskState(String taskState) {
+		this.taskState = taskState;
+	}
+
+	@Column(name = "task_remain")
+	public Integer getTaskRemain() {
+		return this.taskRemain;
+	}
+
+	public void setTaskRemain(Integer taskRemain) {
+		this.taskRemain = taskRemain;
 	}
 
 }

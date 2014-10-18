@@ -35,9 +35,9 @@ public class AccessFilter implements Filter {
 		HttpServletResponse response = (HttpServletResponse)arg1;
 		HttpSession session = request.getSession();
 		User u = (User) session.getAttribute("user");
-		if(!"/Exam/".equals(request.getRequestURI())){
+		if(!"/taskPro/".equals(request.getRequestURI())){
 			if(u == null){
-			response.sendRedirect("/Exam");//未登录则返回登录页
+			response.sendRedirect("/taskPro");//未登录则返回登录页
 			return ;
 	        } else {
 	        	String role = null;
@@ -53,7 +53,7 @@ public class AccessFilter implements Filter {
 //	        		case "学生":role="student";break;
 //	        	}
 	        	if(request.getRequestURI().indexOf(role)==-1){
-	            	response.sendRedirect("/Exam");//角色不符则返回登录页
+	            	response.sendRedirect("/taskPro");//角色不符则返回登录页
 	    			return ;
 	        	}
 	        }

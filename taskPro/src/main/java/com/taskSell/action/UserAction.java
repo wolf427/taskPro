@@ -136,6 +136,7 @@ public class UserAction extends BaseAction implements ModelDriven<UserPage> {
 	public void getTaskList() {
 		BusinessUserPage businessUserPage = new BusinessUserPage();
 		BeanUtils.copyProperties(userPage, businessUserPage);
+		businessUserPage.setTaskState("approved_on");
 		super.writeJson(taskService.getTasks(businessUserPage));
 	}
 

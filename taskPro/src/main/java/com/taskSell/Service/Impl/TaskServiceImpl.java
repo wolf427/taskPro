@@ -13,13 +13,14 @@ import org.springframework.stereotype.Service;
 
 import com.taskSell.Dao.TaskDaoI;
 import com.taskSell.Service.TaskServiceI;
+import com.taskSell.Service.Impl.task.TaskServiceAdapter;
 import com.taskSell.model.Task;
 import com.taskSell.pageModel.BusinessUserPage;
 import com.taskSell.pageModel.DataGrid;
 import com.taskSell.pageModel.UserPage;
 
 @Service("taskService")
-public class TaskServiceImpl implements TaskServiceI {
+public class TaskServiceImpl extends TaskServiceAdapter {
 	/**
 	 * Logger for this class
 	 */
@@ -40,6 +41,7 @@ public class TaskServiceImpl implements TaskServiceI {
 	@Override
 	public Task save(Task task) {
 		task.setTaskId(UUID.randomUUID().toString());
+		task.setTaskState("init");
 		taskDao.save(task);
 		return task;
 	}
@@ -79,7 +81,8 @@ public class TaskServiceImpl implements TaskServiceI {
 				&& isNull(businessUserPage.getContact())
 				&& isNull(businessUserPage.getTaskId())
 				&& isNull(businessUserPage.getTaskNeed())
-				&& isNull(businessUserPage.getTaskType())) {
+				&& isNull(businessUserPage.getTaskType())
+				&& isNull(businessUserPage.getTaskState())) {
 			return;
 		}
 		hqlTemp.append(" where");
@@ -90,21 +93,18 @@ public class TaskServiceImpl implements TaskServiceI {
 		if (!isNull(businessUserPage.getTaskId())) {
 			hqlTemp.append(" t.taskId = :taskId and");
 			params.put("taskId", businessUserPage.getTaskId());
+		}if (!isNull(businessUserPage.getTaskState())) {
+			hqlTemp.append(" t.taskState = :taskState and");
+			params.put("taskState", businessUserPage.getTaskState());
 		}
 		hqlTemp.delete(hqlTemp.length() - 4, hqlTemp.length());
 	}
-	
-	/**
-	* <p>Title: getTaskById</p>
-	* <p>Description: 通过taskId查找task</p>
-	* @param taskId
-	* @return
-	*/
+
 	@Override
-	public Task getTaskById(String taskId){
-		Map<String, Object> params =new HashMap<String, Object>();
+	public Task getTaskById(String taskId) {
+		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("taskId", taskId);
 		return taskDao.get("from Task t where t.taskId=:taskId", params);
 	}
-	
+
 }

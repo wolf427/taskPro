@@ -2,9 +2,7 @@
 
 <link rel="stylesheet" href="jslib/jqBootgrid/css/bootstrap.css">
 <link rel="stylesheet" href="jslib/jqBootgrid/build/jquery.bootgrid.css">
-<script src="jslib/jqBootgrid/js/moderniz.2.8.1.js"></script>
 <script src="jslib/jqBootgrid/lib/jquery-1.11.1.min.js"></script>
-<script src="jslib/jqBootgrid/js/bootstrap.js"></script>
 <script src="jslib/jqBootgrid/build/jquery.bootgrid.js"></script>
 <script type="text/javascript">
 	$(function() {

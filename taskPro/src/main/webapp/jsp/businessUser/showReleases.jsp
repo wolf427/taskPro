@@ -1,20 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%
-	String path = request.getContextPath();
-	String basePath = request.getScheme() + "://"
-			+ request.getServerName() + ":" + request.getServerPort()
-			+ path + "/";
-%>
-
-
-<base href="<%=basePath%>">
-
-<link rel="stylesheet" href="jslib/jqBootgrid/css/bootstrap.css">
-<link rel="stylesheet" href="jslib/jqBootgrid/build/jquery.bootgrid.css">
-<script src="jslib/jqBootgrid/js/moderniz.2.8.1.js"></script>
-<script src="jslib/jqBootgrid/lib/jquery-1.11.1.min.js"></script>
-<script src="jslib/jqBootgrid/js/bootstrap.js"></script>
-<script src="jslib/jqBootgrid/build/jquery.bootgrid.js"></script>
+<%@ page language="java" pageEncoding="UTF-8"%>
 
 <script type="text/javascript">
 	$(function() {
